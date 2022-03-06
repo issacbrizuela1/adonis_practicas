@@ -6,10 +6,11 @@ const Schema = use('Schema')
 class DetalleventaSchema extends Schema {
   up () {
     this.create('detalleventas', (table) => {
-      table.integer('id_dventa').references('id_venta').inTable('ventas').primary()
-      table.increments("codigo", { primaryKey: false }).unique()
-      table.integer('producto').references('id_producto').inTable('productos')
+      table.increments("id_dventa")
+      table.integer('venta').unsigned().references('id_venta').inTable('ventas')
+      table.integer('producto').unsigned().references('id_producto').inTable('productos')
       table.integer("cantidad").notNullable()
+      table.float("total")
       table.timestamps()
     })
   }

@@ -10,14 +10,14 @@ class ProveedorSchema extends Schema {
       table.string("nombre_empresa")
       table.string("nombre_contacto")
       table.string("correo")
-      table.int("telefono")
-      table.text("direccion",200)
+      table.integer("telefono")
+      table.text("direccion")
       table.timestamps()
     })
   }
 
   down () {
-    this.drop('proveedors')
+    this.drop('proveedores')
   }
 }
 
