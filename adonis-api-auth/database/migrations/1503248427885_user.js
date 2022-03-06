@@ -7,10 +7,11 @@ class UserSchema extends Schema {
   up () {
     this.create('users', (table) => {
       table.increments("id_user")
+      table.increments("matricula", { primaryKey: false }).notNullable().unique()
       table.string('username', 80).notNullable().unique()
       table.string('email', 254).notNullable().unique()
       table.string('password', 60).notNullable()
-      table.enu('tipo_usuario', ['cliente', 'cajero', 'administrador'])
+      table.enu('tipo_usuario', ['cajero', 'administrador'])
       table.boolean('estado')
       table.timestamps()
     })
