@@ -9,7 +9,6 @@ class TallaSchema extends Schema {
       table.increments("id_talla")
       table.integer('producto').unsigned().references('id_producto').inTable('productos')
       table.float("numero",2,2).notNullable()
-      table.integer("stock").notNullable()
       table.timestamps()
     })
   }

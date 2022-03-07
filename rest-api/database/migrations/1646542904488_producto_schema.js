@@ -14,6 +14,7 @@ class ProductoSchema extends Schema {
       table.integer('proveedor').unsigned().references('id_proveedor').inTable('proveedores')
       table.integer('genero').unsigned().references('id_generos').inTable('generos')
       table.float("precio_u",8,2).notNullable()
+      table.integer("stock").notNullable()
       table.timestamps()
     })
   }
