@@ -19,6 +19,10 @@ const Route = use('Route')
 Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
+Route.post('users', 'UserController.store');
+Route.post('login', 'UserController.login');
+Route.post('register', 'UserController.store');
+
 Route.group(() => {
   Route.get('user', 'UserController.getUser');
   Route.post('logout', 'UserController.logout');

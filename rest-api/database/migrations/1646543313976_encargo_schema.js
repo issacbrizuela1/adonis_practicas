@@ -7,7 +7,7 @@ class EncargoSchema extends Schema {
   up () {
     this.create('encargos', (table) => {
       table.increments("id_encargo")
-      table.integer('usuario').unsigned().references('id_user').inTable('users')
+      table.integer('usuario').unsigned().references('id').inTable('users')
       table.integer('proveedor').unsigned().references('id_proveedor').inTable('proveedores')
       table.float("total",8,2)
       table.timestamps()
