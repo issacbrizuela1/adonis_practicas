@@ -8,6 +8,7 @@ class GeneroSchema extends Schema {
     this.create('generos', (table) => {
       table.increments("id_generos")
       table.string("nombre")
+      table.timestamps()
     })
   }
 
