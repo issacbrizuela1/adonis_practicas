@@ -2,7 +2,7 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import {schema,rules} from '@ioc:Adonis/Core/Validator'
 import User from 'App/Models/User'
 export default class UsersController {
-    public async register({request,response,auth})
+    public async register({request,response,auth}: HttpContextContract)
     {
         try {
             const userschema=schema.create(
@@ -22,6 +22,15 @@ export default class UsersController {
         }
         
     }
+    async store ({ request, response }) {
+        let input = request.all();
+        await User.create(input);
+    
+        return response.status(200).send({
+          res: true,
+          message: "Usuario registrado correctamente"
+        });
+      }
     public async login({request,response,auth}:HttpContextContract)
     {
         const {uid,password}=request.only(['uid','password'])
@@ -35,6 +44,15 @@ export default class UsersController {
         return response.json({
             res: true,
             token: auth,
+            message: 'Bienvenido al sistema'
+        })
+    }
+    async logins({request, response, auth}){
+        let input = request.all();
+        let token = await auth.attempt(input.email, input.password);
+        return response.json({
+            res: true,
+            token: token,
             message: 'Bienvenido al sistema'
         })
     }

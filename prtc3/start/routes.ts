@@ -24,10 +24,11 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 
-Route.post('login','UsersController.login')
+Route.post('login','UsersController.logins')
 //insert
-Route.post('register','UsersController.register')
+Route.post('register','UsersController.store')
 Route.post('categoria','CategoriasController.store')
 Route.post('genero','CategoriasController.store')
-Route.post('categoria','GenerosController.store')
 Route.post('tallas','TallasController.store')
+//update
+Route.put('categoria','CategoriasController.store')
