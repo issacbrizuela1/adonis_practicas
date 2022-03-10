@@ -9,8 +9,7 @@ export default class UsersController {
                 {
                     username:schema.string({trim:true},[rules.unique({table:'users',column:'username',caseInsensitive:true})]),
                     email:schema.string({trim:true},[rules.email(),rules.unique({table:'users',column:'username',caseInsensitive:true})]),
-                    password:schema.string({},[rules.minLength(8)]),
-                    tipo_usuario:schema.enum(['cliente','cajero', 'administrador']as const,[rules.unique({table: 'users',column:'tipo_usuario'})])
+                    password:schema.string({},[rules.minLength(8)])
                 }
             )
             const data=await request.validate({schema:userschema})
