@@ -9,4 +9,33 @@ export default class GenerosController {
           message: "categoria creada correctamente"
         });
       }
+      async index ({ request, response }) 
+      {
+          const input = await request.all();
+          if(input.txtBuscar !== undefined){
+            return await Genero.query()
+                                  .where('nombre', input.txtBuscar)
+                                  .orWhere('Categoria', 'like', '%' + input.txtBuscar + '%');
+          }
+          else{
+            return await Genero.all();
+          }    
+      }
+      async update ({ params, request, response }) {
+          //validar
+          
+          await Genero.query().where('id_categoria', params.id).update(request.all());
+          return {
+            res: true,
+            message: "Registro modificado correctamente"
+          }
+        }
+        async destroy ({ params, request, response }) {
+          const categoria = await Genero.findOrFail(params.id);
+          await categoria.delete();
+          return {
+            res: true,
+            message: "Registro eliminado correctamente"
+          }
+        }
 }

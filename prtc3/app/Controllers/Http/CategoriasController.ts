@@ -32,5 +32,13 @@ export default class CategoriasController {
           message: "Registro modificado correctamente"
         }
       }
+      async destroy ({ params, request, response }) {
+        const categoria = await Categoria.findOrFail(params.id);
+        await categoria.delete();
+        return {
+          res: true,
+          message: "Registro eliminado correctamente"
+        }
+      }
 }
 
