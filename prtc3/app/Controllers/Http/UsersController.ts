@@ -31,7 +31,7 @@ export default class UsersController {
           message: "Usuario registrado correctamente"
         });
       }
-    public async login({request,response,auth}:HttpContextContract)
+    public async logins({request,response,auth}:HttpContextContract)
     {
         const {uid,password}=request.only(['uid','password'])
         try {
@@ -47,13 +47,35 @@ export default class UsersController {
             message: 'Bienvenido al sistema'
         })
     }
-    async logins({request, response, auth}){
+
+    async login({request, response, auth}){
         let input = request.all();
-        let token = await auth.attempt(input.email, input.password);
+        let token = await auth.withRefreshToken().attempt(input.email, input.password);
         return response.json({
             res: true,
             token: token,
             message: 'Bienvenido al sistema'
+        })
+    }
+
+    async getUser({response, auth}){
+        try {
+            return await auth.getUser()
+          } catch (error) {
+            response.send('Nungun usuario autenticado')
+          }
+    }
+    
+    async logout({response, auth}){
+        const apiToken = auth.getAuthHeader()
+
+        await auth
+        .authenticator('api')
+        .revokeTokens([apiToken])
+
+        response.status(200).send({
+            res:true,
+            message: 'Adios'
         })
     }
 }

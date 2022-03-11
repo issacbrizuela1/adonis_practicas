@@ -1,7 +1,7 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
 export default class Proveedors extends BaseSchema {
-  protected tableName = 'proveedores'
+  protected tableName = 'proveedors'
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {

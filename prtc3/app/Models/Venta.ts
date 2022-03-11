@@ -22,4 +22,5 @@ export default class Venta extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+  
 }

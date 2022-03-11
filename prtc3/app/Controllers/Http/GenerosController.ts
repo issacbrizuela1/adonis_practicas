@@ -31,8 +31,8 @@ export default class GenerosController {
           }
         }
         async destroy ({ params, request, response }) {
-          const categoria = await Genero.findOrFail(params.id);
-          await categoria.delete();
+          const Genero = await request.findOrFail(params.id);
+          await Genero.delete();
           return {
             res: true,
             message: "Registro eliminado correctamente"

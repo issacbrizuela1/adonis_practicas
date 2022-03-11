@@ -23,12 +23,22 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.get('/', async () => {
   return { hello: 'world' }
 })
-
-Route.post('login','UsersController.logins')
+Route.group(() => {
+  Route.get('user', 'UserController.getUser');
+  Route.post('logout', 'UserController.logout');
+})
+Route.post('login','UsersController.login')
 //insert
 Route.post('register','UsersController.store')
 Route.post('categoria','CategoriasController.store')
-Route.post('genero','CategoriasController.store')
+Route.post('genero','GenerosController.store')
 Route.post('tallas','TallasController.store')
+
+Route.post('producto','ProductosController.store')
+Route.post('proveedor','ProveedorsController.store')
 //update
 Route.put('categoria','CategoriasController.store')
+
+//mostrar
+Route.get('tallass/:producto','TallasController.indexbyid')
+Route.get('tallasss','TallasController.all')

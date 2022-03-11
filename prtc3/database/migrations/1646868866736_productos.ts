@@ -10,7 +10,7 @@ export default class Productos extends BaseSchema {
       table.string("marca").notNullable()
       table.integer('categoria').unsigned().references('id_categoria').inTable('categorias')
       table.string("color",15).notNullable()
-      table.integer('proveedor').unsigned().references('id_proveedor').inTable('proveedores')
+      table.integer('proveedor').unsigned().references('id_proveedor').inTable('proveedors')
       table.integer('genero').unsigned().references('id_genero').inTable('generos')
       table.float("precio_u",8,2).notNullable()
       table.integer("stock").notNullable()
