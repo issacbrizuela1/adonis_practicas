@@ -32,13 +32,9 @@ Route.post('login','UsersController.login')
 Route.post('register','UsersController.store')
 Route.post('categoria','CategoriasController.store')
 Route.post('genero','GenerosController.store')
-Route.post('tallas','TallasController.store')
+Route.resource('tallas','TallasController').apiOnly();
 
 Route.post('producto','ProductosController.store')
 Route.post('proveedor','ProveedorsController.store')
 //update
 Route.put('categoria','CategoriasController.store')
-
-//mostrar
-Route.get('tallass/:producto','TallasController.indexbyid')
-Route.get('tallasss','TallasController.all')

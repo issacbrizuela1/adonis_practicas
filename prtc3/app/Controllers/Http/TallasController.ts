@@ -52,9 +52,11 @@ export default class TallasController {
             return error
         }
     }
-    async all()
+    async show({params,request,response})
     {
-        const tallas=Talla.query().where('producto',1)
+        //let id=request.all()
+        const tallas=Talla.query().where('producto',params.id)
         return tallas
+         
     }
 }
