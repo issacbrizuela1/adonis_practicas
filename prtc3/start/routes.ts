@@ -30,10 +30,21 @@ Route.group(() => {
 Route.post('login','UsersController.logins')
 Route.post('comp','UsersController.comp')
 
-Route.get('Categorias','CategoriasController.index');
 Route.get('Categorias/:id','CategoriasController.buscar');
 Route.resource('Generos','GenerosController').apiOnly();
 Route.resource('Users','UsersController').apiOnly();
 Route.post('Proveedores','ProveedorsController.store');
 Route.get('Productos','ProductosController.index');
 Route.resource('tallas','TallasController').apiOnly();
+
+Route.post('insertCategorias','CategoriasController.store');
+Route.get('mostrarCategorias','CategoriasController.index');
+Route.put('editarCategorias/:id','CategoriasController.update');
+Route.delete('eliminarCategorias/:id','CategoriasController.destroy');
+Route.get('mostrarbyidCategorias/:id','CategoriasController.buscar');
+
+Route.post('insertCategorias','CategoriasController.store');
+Route.get('mostrarCategorias','CategoriasController.index');
+Route.put('editarCategorias/:id','CategoriasController.update');
+Route.delete('eliminarCategorias/:id','CategoriasController.destroy');
+//Route.get('mostrarbyidCategorias/:id','CategoriasController.buscar');
