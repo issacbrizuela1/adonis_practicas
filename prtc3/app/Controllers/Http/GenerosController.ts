@@ -13,7 +13,9 @@ export default class GenerosController {
         res: true,
         message: 'genero creado correctamente',
       })
-    } catch (error) {return error}
+    } catch (error) {
+      return error
+    }
   }
   async index({ request, response }) {
     const input = await request.all()

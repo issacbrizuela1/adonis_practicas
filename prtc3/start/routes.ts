@@ -47,4 +47,16 @@ Route.post('insertDetalleencargo','DetalleencargosController.store');
 Route.get('mostrarDetalleencargo','DetalleencargosController.index');
 Route.put('editarDetalleencargo/:id','DetalleencargosController.update');
 Route.delete('eliminarDetalleencargo/:id','DetalleencargosController.destroy');
-//Route.get('mostrarbyidCategorias/:id','DetalleencargosController.buscar');
+//Route.get('mostrarbyidDetalleencargo/:id','DetalleencargosController.buscar');
+
+Route.post('insertEncargos','EncargosController.store');
+Route.get('mostrarEncargos','EncargosController.index');
+Route.put('editarEncargos/:id','EncargosController.update');
+Route.delete('eliminarEncargos/:id','EncargosController.destroy');
+//Route.get('mostrarbyidEncargos/:id','EncargosController.buscar');
+
+Route.post('insertGeneros','GenerosController.store');
+Route.get('mostrarGeneros','GenerosController.index');
+Route.put('editarGeneros/:id','GenerosController.update');
+Route.delete('eliminarGeneros/:id','GenerosController.destroy');
+//Route.get('mostrarbyidGeneros/:id','GenerosController.buscar');
