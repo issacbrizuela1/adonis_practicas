@@ -43,8 +43,8 @@ Route.put('editarCategorias/:id','CategoriasController.update');
 Route.delete('eliminarCategorias/:id','CategoriasController.destroy');
 Route.get('mostrarbyidCategorias/:id','CategoriasController.buscar');
 
-Route.post('insertCategorias','CategoriasController.store');
-Route.get('mostrarCategorias','CategoriasController.index');
-Route.put('editarCategorias/:id','CategoriasController.update');
-Route.delete('eliminarCategorias/:id','CategoriasController.destroy');
-//Route.get('mostrarbyidCategorias/:id','CategoriasController.buscar');
+Route.post('insertDetalleencargo','DetalleencargosController.store');
+Route.get('mostrarDetalleencargo','DetalleencargosController.index');
+Route.put('editarDetalleencargo/:id','DetalleencargosController.update');
+Route.delete('eliminarDetalleencargo/:id','DetalleencargosController.destroy');
+//Route.get('mostrarbyidCategorias/:id','DetalleencargosController.buscar');
