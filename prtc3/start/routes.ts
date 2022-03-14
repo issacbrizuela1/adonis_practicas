@@ -27,14 +27,13 @@ Route.group(() => {
   Route.get('user', 'UserController.getUser');
   Route.post('logout', 'UserController.logout');
 })
-Route.post('login','UsersController.login')
-//insert
-Route.post('register','UsersController.store')
-Route.post('categoria','CategoriasController.store')
-Route.post('genero','GenerosController.store')
-Route.resource('tallas','TallasController').apiOnly();
+Route.post('login','UsersController.logins')
+Route.post('comp','UsersController.comp')
 
-Route.post('producto','ProductosController.store')
-Route.post('proveedor','ProveedorsController.store')
-//update
-Route.put('categoria','CategoriasController.store')
+Route.get('Categorias','CategoriasController.index');
+Route.get('Categorias/:id','CategoriasController.buscar');
+Route.resource('Generos','GenerosController').apiOnly();
+Route.resource('Users','UsersController').apiOnly();
+Route.post('Proveedores','ProveedorsController.store');
+Route.get('Productos','ProductosController.index');
+Route.resource('tallas','TallasController').apiOnly();

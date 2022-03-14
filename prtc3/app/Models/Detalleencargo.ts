@@ -1,10 +1,11 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
 
+
 export default class Detalleencargo extends BaseModel {
   @column()
-  public id: number
-
+  public id_detalleencargo: number
+  
   @column()
   public encargo: number
 

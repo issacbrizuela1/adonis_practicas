@@ -1,13 +1,19 @@
-// import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Talla from "App/Models/Talla";
+import {schema,rules} from '@ioc:Adonis/Core/Validator'
 export default class TallasController {
-    async store ({ request, response }) {
-        let input = request.all();
-        await Talla.create(input);
-        return response.status(200).send({
-          res: true,
-          message: "categoria creada correctamente"
-        });
+    async store ({ request, response }:HttpContextContract) {
+        const tallaschema=schema.create({producto:schema.number(),numero:schema.number()})
+        try {
+            const data=await request.validate({schema:tallaschema})
+            await Talla.create(data);
+            return response.status(200).send({
+            res: true,
+            message: "categoria creada correctamente"
+            });
+        } catch (error) {
+            return response.status(404).send({error});
+        }
     }
     async index ({ request, response }) 
     {
@@ -54,9 +60,8 @@ export default class TallasController {
     }
     async show({params,request,response})
     {
-        //let id=request.all()
+        //tiene que ser el id del producto
         const tallas=Talla.query().where('producto',params.id)
         return tallas
-         
     }
 }

@@ -1,6 +1,10 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import {schema,rules} from '@ioc:Adonis/Core/Validator'
 import User from 'App/Models/User'
+import Database from '@ioc:Adonis/Lucid/Database'
+import { AsyncLocalStorage } from 'async_hooks'
+export const storage = new AsyncLocalStorage()
+
 export default class UsersController {
     public async register({request,response,auth}: HttpContextContract)
     {
@@ -50,11 +54,11 @@ export default class UsersController {
 
     async login({request, response, auth}){
         let input = request.all();
-        let token = await auth.withRefreshToken().attempt(input.email, input.password);
+        let token = await auth.use('api').attempt(input.email, input.password, {
+            expiresIn: '7days'
+          })
         return response.json({
-            res: true,
-            token: token,
-            message: 'Bienvenido al sistema'
+            token: token
         })
     }
 
@@ -62,10 +66,31 @@ export default class UsersController {
         try {
             return await auth.getUser()
           } catch (error) {
-            response.send('Nungun usuario autenticado')
+            response.send('Ningun usuario autenticado')
           }
     }
     
+    public async comp({request, response, auth})
+    {   
+        try {
+            let input = request.all();
+            const x= await Database.query().from('users').select('tipo_usuario').where('email',input.email)
+            let token = await auth.attempt(input.email, input.password);
+            //return [token , token['token'],x['knexQuery']['_statements'][1]['value']]
+            console.log(x)
+            //response.JSON({tipo:x,token:token['token']})
+            let s =JSON.stringify(x)
+            return response.json({
+                res: true,
+                accessToken: token,
+                message: 'Bienvenido al sistema'
+            })
+
+        } catch (error) {
+            return error
+        }
+    }
+
     async logout({response, auth}){
         const apiToken = auth.getAuthHeader()
 
