@@ -28,8 +28,7 @@ export default class ProductosController {
     const input = await request.all()
     if (input.txtBuscar !== undefined) {
       return await Producto.query()
-        .where('nombre', input.txtBuscar)
-        .orWhere('Categoria', 'like', '%' + input.txtBuscar + '%')
+        .where('nombre', 'like', '%' + input.txtBuscar + '%')
     } else {
       return await Producto.all()
     }

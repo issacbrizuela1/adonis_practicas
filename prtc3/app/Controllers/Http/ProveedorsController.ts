@@ -27,8 +27,11 @@ export default class ProveedorsController {
     const input = await request.all()
     if (input.txtBuscar !== undefined) {
       return await Proveedor.query()
-        .where('nombre', input.txtBuscar)
-        .orWhere('Categoria', 'like', '%' + input.txtBuscar + '%')
+        .where('nombre_empresa',  'like', '%' + input.txtBuscar + '%')
+        .orWhere('nombre_contacto', 'like', '%' + input.txtBuscar + '%')
+        .orWhere('correo', 'like', '%' + input.txtBuscar + '%')
+        .orWhere('telefono', 'like', '%' + input.txtBuscar + '%')
+        .orWhere('direccion', 'like', '%' + input.txtBuscar + '%')
     } else {
       return await Proveedor.all()
     }

@@ -30,12 +30,9 @@ Route.group(() => {
 Route.post('login','UsersController.logins')
 Route.post('comp','UsersController.comp')
 
-Route.get('Categorias/:id','CategoriasController.buscar');
-Route.resource('Generos','GenerosController').apiOnly();
+
+
 Route.resource('Users','UsersController').apiOnly();
-Route.post('Proveedores','ProveedorsController.store');
-Route.get('Productos','ProductosController.index');
-Route.resource('tallas','TallasController').apiOnly();
 
 Route.post('insertCategorias','CategoriasController.store');
 Route.get('mostrarCategorias','CategoriasController.index');
@@ -60,3 +57,21 @@ Route.get('mostrarGeneros','GenerosController.index');
 Route.put('editarGeneros/:id','GenerosController.update');
 Route.delete('eliminarGeneros/:id','GenerosController.destroy');
 //Route.get('mostrarbyidGeneros/:id','GenerosController.buscar');
+
+Route.post('insertProductos','ProductosController.store');
+Route.get('mostrarProductos','ProductosController.index');
+Route.put('editarProductos/:id','ProductosController.update');
+Route.delete('eliminarProductos/:id','ProductosController.destroy');
+//Route.get('mostrarbyidProductos/:id','ProductosController.buscar');
+
+Route.post('insertProveedors','ProveedorsController.store');
+Route.get('mostrarProveedors','ProveedorsController.index');
+Route.put('editarProveedors/:id','ProveedorsController.update');
+Route.delete('eliminarProveedors/:id','ProveedorsController.destroy');
+//Route.get('mostrarbyidProveedors/:id','ProveedorsController.buscar');
+
+Route.post('insertTallas','TallasController.store');
+Route.get('mostrarTallas','TallasController.index');
+Route.put('editarTallas/:id','TallasController.update');
+Route.delete('eliminarTallas/:id','TallasController.destroy');
+//Route.get('mostrarbyidTallas/:id','TallasController.buscar');

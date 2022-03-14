@@ -11,7 +11,7 @@ export default class DetalleencargosController {
       message: 'categoria creada correctamente',
     })
   }
-  async index({ request, response }) {
+  async index() {
     return await Detalleencargo.query().from('detalleencargos').select('*')
   }
   async update({ params, request, response }) {
