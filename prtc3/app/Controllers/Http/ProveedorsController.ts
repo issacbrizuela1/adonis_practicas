@@ -34,6 +34,7 @@ export default class ProveedorsController {
         .orWhere('direccion', 'like', '%' + input.txtBuscar + '%')
     } else {
       return await Proveedor.all()
+      //return await Proveedor.query().from('generos').select('*')
     }
   }
   async update({ params, request, response }) {

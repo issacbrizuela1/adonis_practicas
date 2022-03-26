@@ -25,6 +25,7 @@ export default class TallasController {
         }
         else{
         return await Talla.all();
+        //return await Proveedor.query().from('generos').select('*')
         }    
     }
     async update ({ params, request, response }) {

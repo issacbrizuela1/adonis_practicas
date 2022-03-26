@@ -14,6 +14,7 @@ export default class Productos extends BaseSchema {
       table.integer('genero').unsigned().references('id_genero').inTable('generos')
       table.float("precio_u",8,2).notNullable()
       table.integer("stock").notNullable()
+      table.integer("disponible")
       table.timestamps()
     })
   }

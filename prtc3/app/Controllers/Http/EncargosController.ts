@@ -9,10 +9,12 @@ export default class EncargosController {
       message: 'categoria creada correctamente',
     })
   }
-  async index({ request, response }) {
-    const input = await request.all()
-
-    return await Encargo.all()
+  async index() {
+    try {
+      return await Encargo.query().from('encargos').select('*')
+    } catch (error) {
+      return error
+    }
   }
   async update({ params, request, response }) {
     //validar

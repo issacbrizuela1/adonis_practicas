@@ -1,23 +1,3 @@
-/*
-|--------------------------------------------------------------------------
-| Routes
-|--------------------------------------------------------------------------
-|
-| This file is dedicated for defining HTTP routes. A single file is enough
-| for majority of projects, however you can define routes in different
-| files and just make sure to import them inside this file. For example
-|
-| Define routes in following two files
-| ├── start/routes/cart.ts
-| ├── start/routes/customer.ts
-|
-| and then import them inside `start/routes.ts` as follows
-|
-| import './routes/cart'
-| import './routes/customer'
-|
-*/
-
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/', async () => {
@@ -27,18 +7,22 @@ Route.group(() => {
   Route.get('user', 'UserController.getUser');
   Route.post('logout', 'UserController.logout');
 })
-Route.post('login','UsersController.logins')
+Route.post('login','UsersController.login')
 Route.post('comp','UsersController.comp')
 
 
 
-Route.resource('Users','UsersController').apiOnly();
+Route.post('insertUser','UserController.store');
+Route.get('mostrarUser','UserController.index');
+Route.put('editarUser/:id','UserController.update');
+Route.delete('eliminarUser/:id','UserController.destroy');
+//Route.get('mostrarbyidUser/:id','UserController.buscar');
 
 Route.post('insertCategorias','CategoriasController.store');
 Route.get('mostrarCategorias','CategoriasController.index');
 Route.put('editarCategorias/:id','CategoriasController.update');
 Route.delete('eliminarCategorias/:id','CategoriasController.destroy');
-Route.get('mostrarbyidCategorias/:id','CategoriasController.buscar');
+//Route.get('mostrarbyidCategorias/:id','CategoriasController.buscar');
 
 Route.post('insertDetalleencargo','DetalleencargosController.store');
 Route.get('mostrarDetalleencargo','DetalleencargosController.index');
@@ -75,3 +59,37 @@ Route.get('mostrarTallas','TallasController.index');
 Route.put('editarTallas/:id','TallasController.update');
 Route.delete('eliminarTallas/:id','TallasController.destroy');
 //Route.get('mostrarbyidTallas/:id','TallasController.buscar');
+
+Route.get('mostrarVenta','VentaMongosController.mostar');
+Route.post('insertarVenta','VentaMongosController.insertar');
+Route.get('ultimoID','VentaMongosController.ultima_venta');
+
+Route.get('mostrarDetalleVenta','DetalleventasController.mostar');
+Route.post('insertarDetalleVenta','DetalleventasController.insertar');
+
+Route.get('mostrarCarrito','DetalleventasController.mostrar_carrito');
+Route.post('insertarCarrito','DetalleventasController.insertar_carrito');
+
+Route.get('total','DetalleventasController.total');
+
+
+
+Route.group(() => {
+
+  Route.get('token', async ({ auth }) => {
+    await auth.use('api').authenticate()
+    console.log(auth.use('api').user!)
+    return { resp: 'activo' }
+  })
+  /*
+  Route.post('/usuario', 'UsuariosController.store')
+  Route.delete('/usuario/:id', 'UsuariosController.destroy')
+  Route.get('/usuario', 'UsuariosController.index')
+  Route.patch('/usuario/:id', 'UsuariosController.update')
+  Route.get('/usuario/:id', 'UsuariosController.show')
+  */
+}).middleware('auth')
+/*
+Route.post('/login', 'AuthController.login')
+Route.post('/register', 'AuthController.register')
+*/

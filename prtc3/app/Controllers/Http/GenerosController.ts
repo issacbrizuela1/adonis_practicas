@@ -25,6 +25,7 @@ export default class GenerosController {
         .orWhere('Categoria', 'like', '%' + input.txtBuscar + '%')
     } else {
       return await Genero.all()
+      //return await Genero.query().from('generos').select('*')
     }
   }
   async update({ params, request, response }) {

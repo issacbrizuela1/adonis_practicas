@@ -9,7 +9,6 @@ export default class Detalleencargos extends BaseSchema {
       table.integer('encargo').unsigned().references('id_encargo').inTable('encargos')
       table.integer('producto').unsigned().references('id_producto').inTable('productos')
       table.integer("cantidad")
-      table.float("sub_total")
       table.timestamps()
     })
   }

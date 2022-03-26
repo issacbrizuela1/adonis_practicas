@@ -31,6 +31,7 @@ export default class ProductosController {
         .where('nombre', 'like', '%' + input.txtBuscar + '%')
     } else {
       return await Producto.all()
+      //return await Producto.query().from('generos').select('*')
     }
   }
   async update({ params, request, response }) {

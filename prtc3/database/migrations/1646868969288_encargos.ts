@@ -8,7 +8,6 @@ export default class Encargos extends BaseSchema {
       table.increments("id_encargo")
       table.integer('usuario').unsigned().references('id').inTable('users')
       table.integer('proveedor').unsigned().references('id_proveedor').inTable('proveedors')
-      table.float("total",8,2)
       table.timestamps()
     })
   }
